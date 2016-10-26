@@ -1,1 +1,67 @@
-Coming soon....
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Thomas Sauer - Coming soon...</title>
+  <meta name="description" content="Personal website of Thomas Sauer.">
+  <meta name="author" content="Thomas Sauer">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: "Roboto", sans-serif;
+    }
+
+    body {
+      background-image: url("images/background.jpeg");
+      background-size: cover;
+    }
+
+    .coming-soon {
+      font-size: 100px;
+      display: inline-block;
+      height: 80px;
+      color: bisque;
+      border-top: solid 20px bisque;
+      line-height: 80px;
+      z-index: 1;
+      position: fixed;
+      bottom: 200px;
+      left: 0;
+    }
+
+    .blurred-background {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      bottom: 0;
+      background-image: url("images/background-blurred.jpeg");
+      background-size: cover;
+      -webkit-mask-image: radial-gradient(farthest-corner at 50% 50%, transparent 0%, black 50%);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="blurred-background">
+  </div>
+  <div class="coming-soon">
+    Coming soon...
+  </div>
+
+  <script type="text/javascript">
+    const blurredBgEl = document.querySelector('.blurred-background');
+
+    document.addEventListener('mousemove', function(event) {
+      blurredBgEl.style.webkitMaskImage = `radial-gradient(farthest-corner at ${event.screenX}px ${event.screenY}px, transparent 0%, black 50%)`;
+    });
+  </script>
+</body>
+</html>
