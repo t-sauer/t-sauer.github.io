@@ -1,0 +1,21 @@
+{
+  "name": "t-sauer.github.io",
+  "homepage": "http://www.t-sauer.io",
+  "authors": [
+    "Thomas Sauer <t-sauer@outlook.de>"
+  ],
+  "description": "Personal website of Thomas Sauer",
+  "main": "",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "three.js": "^0.81.0"
+  }
+}

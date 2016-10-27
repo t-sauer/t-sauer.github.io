@@ -1,0 +1,22 @@
+{
+  "name": "t-sauer.github.io",
+  "version": "0.1.0",
+  "description": "Personal website of Thomas Sauer",
+  "main": " ",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-sauer/t-sauer.github.io.git"
+  },
+  "author": "Thomas Sauer <t-sauer@outlook.de>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/t-sauer/t-sauer.github.io/issues"
+  },
+  "homepage": "https://github.com/t-sauer/t-sauer.github.io#readme",
+  "devDependencies": {
+    "@types/three": "0.0.24"
+  }
+}
