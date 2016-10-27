@@ -12,6 +12,7 @@ function getRandomSpeed() {
 }
 function init() {
   container = document.createElement('div');
+  container.classList.add('canvas-container');
   document.body.appendChild(container);
   camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 2, 2000);
   camera.position.z = 1000;
