@@ -27,7 +27,7 @@
     }
 
     header {
-      top: 50px; target="_blank" rel="noopener"
+      top: 50px;
     }
 
     main {
@@ -63,7 +63,7 @@
     }
 
     section {
-      max-width: 550px;
+      width: 550px;
       margin-bottom: 50px;
     }
 
@@ -76,8 +76,8 @@
     .online-list li {
       list-style-type: none;
 
-      line-height: 0.6;
-      padding-top: 6px;
+      line-height: 1;
+      padding-top: 5px;
     }
 
     .online-list a {
@@ -94,6 +94,24 @@
     .canvas-container {
       position: fixed;
       z-index: -1;
+    }
+
+    @media only screen and (max-device-width : 736px) {
+      header {
+        top: 20px;
+      }
+
+      main {
+        top: 100px;
+      }
+
+      header, main {
+        margin: 0 0 20px 20px;
+      }
+
+      section {
+        max-width: calc(100vw - 40px);
+      }
     }
 
   </style>
