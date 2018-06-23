@@ -6,11 +6,90 @@
 
   <title>Thomas Sauer</title>
   <meta name="author" content="Thomas Sauer">
+  <meta name="description" content="I'm a JavaScript Developer and sometimes I create music.">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: seashell;
+      font-family: sans-serif;
+      align-items: center;
+      flex-direction: column;
+      justify-content: center;
+      color: #002244;
+    }
+
+    .links, body {
+      display: flex;
+    }
+
+    h1 {
+      margin: 1rem 0;
+    }
+
+    hr {
+      width: 25rem;
+      border-bottom: solid 1px #002244;
+      border-width: 0 0 1px 0;
+      margin: 0;
+    }
+
+    .links {
+      margin: 1.5rem 0;
+    }
+
+    .links a {
+      display: block;
+      margin: 0 0.75rem;
+      background-color: #002244;
+      padding: 0.75rem;
+      color: white;
+      text-decoration: none;
+    }
+
+    @media only screen and (max-width: 667px) { 
+      hr {
+        width: calc(100% - 1.5rem);
+      }
+      .links {
+        flex-wrap: wrap;
+        width: 100%;
+        width: calc(100% - 1.5rem);
+      }
+
+      .links a {
+        width: 100%;
+        margin: 0.5rem 0;
+        text-align: center;
+      }
+
+      .links a:first-of-type {
+        margin-top: 0;
+      }
+
+      .links a:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Coming soon... maybe</h1>
+  <h1>Thomas Sauer</h1>
+  <hr>
+  <div class="links">
+    <a href="https://twitter.com/_tsauer">Twitter</a>
+    <a href="https://github.com/t-sauer">GitHub</a>
+    <a href="https://www.instagram.com/_tsauer/">Instagram</a>
+    <a href="https://soundcloud.com/t-sauer">Soundcloud</a>
+    <a href="https://www.linkedin.com/in/t-sauer/">LinkedIn</a>
+  </div>
 </body>
 </html>
