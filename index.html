@@ -15,15 +15,19 @@
       height: 100%;
       margin: 0;
       padding: 0;
+
+      --color-primary: #d9d9d9;
+      --color-accent: #50fbc2;
+      --color-background: #282525;
     }
 
     body {
-      background-color: seashell;
+      background-color: var(--color-background);
       font-family: sans-serif;
       align-items: center;
       flex-direction: column;
       justify-content: center;
-      color: #002244;
+      color: var(--color-primary);
     }
 
     .links, body {
@@ -34,48 +38,52 @@
       margin: 1rem 0;
     }
 
-    hr {
-      width: 25rem;
-      border-bottom: solid 1px #002244;
-      border-width: 0 0 1px 0;
-      margin: 0;
-    }
-
     .links {
       margin: 1.5rem 0;
+      gap: 1rem;
     }
 
     .links a {
-      display: block;
-      margin: 0 0.75rem;
-      background-color: #002244;
-      padding: 0.75rem;
-      color: white;
+      color: var(--color-primary);
+      display: flex;
+      justify-content: center;
+      align-items: center;
       text-decoration: none;
+      width: 8rem;
+      height: 3rem;
+      position: relative;
+    }
+
+    .links a::before {
+      --transition-time: 200ms;
+      pointer-events: none;
+      display: block;
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      outline: solid 3px rgba(0,0,0,0);
+      background: rgba(255, 255, 255, 0);
+      transform: scale(1.1);
+      transition: outline var(--transition-time), background var(--transition-time), transform var(--transition-time);
+    }
+
+    .links a:hover::before {
+      outline: solid 3px var(--color-accent);
+      background: rgba(255, 255, 255, 0.2);
+      transform: scale(1);
     }
 
     @media only screen and (max-width: 667px) { 
-      hr {
-        width: calc(100% - 1.5rem);
-      }
       .links {
         flex-wrap: wrap;
-        width: 100%;
-        width: calc(100% - 1.5rem);
+        width: calc(100% - 3rem);
       }
 
       .links a {
         width: 100%;
-        margin: 0.5rem 0;
-        text-align: center;
-      }
-
-      .links a:first-of-type {
-        margin-top: 0;
-      }
-
-      .links a:last-of-type {
-        margin-bottom: 0;
       }
     }
   </style>
@@ -83,7 +91,6 @@
 
 <body>
   <h1>Thomas Sauer</h1>
-  <hr>
   <div class="links">
     <a href="https://twitter.com/_tsauer">Twitter</a>
     <a href="https://github.com/t-sauer">GitHub</a>
