@@ -64,6 +64,7 @@
       width: 8rem;
       height: 2rem;
       position: relative;
+      outline: none;
     }
 
     .links a::before {
@@ -80,6 +81,12 @@
       background: rgba(255, 255, 255, 0);
       transform: scale(1.1);
       transition: outline var(--transition-time), background var(--transition-time), transform var(--transition-time);
+    }
+
+    .links a:focus::before {
+      outline: solid 3px color-mix(in srgb, var(--color-primary) 50%, transparent);
+      background: rgba(255, 255, 255, 0.1);
+      transform: scale(1);
     }
 
     .links a:hover::before {
