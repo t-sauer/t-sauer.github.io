@@ -38,25 +38,42 @@ const getVisibleBounds = () => {
 
 let bounds = getVisibleBounds();
 
-const particleCount = 1500;
+// Calculate particle count based on screen area
+const calculateParticleCount = () => {
+  const screenArea = window.innerWidth * window.innerHeight;
+  // Base: 2000 particles for ~1920x1080 (2,073,600 pixels)
+  // Scale proportionally, with min of 300 and max of 2000
+  const baseArea = 1920 * 1080;
+  const scaledCount = Math.floor((screenArea / baseArea) * 2000);
+  return Math.max(300, Math.min(2000, scaledCount));
+};
+
+let particleCount = calculateParticleCount();
 const particles = new BufferGeometry();
-const positions = new Float32Array(particleCount * 3);
-const velocities: number[] = [];
+let positions = new Float32Array(particleCount * 3);
+let velocities: number[] = [];
 
 // Initialize particles with random positions
-for (let i = 0; i < particleCount * 3; i += 3) {
-  positions[i] = (Math.random() - 0.5) * bounds.width * 2; // x
-  positions[i + 1] = (Math.random() - 0.5) * bounds.height * 2; // y
-  positions[i + 2] = (Math.random() - 0.5) * 100; // z
+const initializeParticles = () => {
+  positions = new Float32Array(particleCount * 3);
+  velocities = [];
 
-  velocities.push(
-    (Math.random() - 0.5) * 0.05,
-    (Math.random() - 0.5) * 0.05,
-    (Math.random() - 0.5) * 0.05
-  );
-}
+  for (let i = 0; i < particleCount * 3; i += 3) {
+    positions[i] = (Math.random() - 0.5) * bounds.width * 2; // x
+    positions[i + 1] = (Math.random() - 0.5) * bounds.height * 2; // y
+    positions[i + 2] = (Math.random() - 0.5) * 100; // z
 
-particles.setAttribute("position", new BufferAttribute(positions, 3));
+    velocities.push(
+      (Math.random() - 0.5) * 0.05,
+      (Math.random() - 0.5) * 0.05,
+      (Math.random() - 0.5) * 0.05
+    );
+  }
+
+  particles.setAttribute("position", new BufferAttribute(positions, 3));
+};
+
+initializeParticles();
 
 const visibleParticles = new BufferGeometry();
 const particleMaterial = new PointsMaterial({
@@ -113,6 +130,13 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   bounds = getVisibleBounds();
+
+  // Recalculate particle count and reinitialize if it changed
+  const newParticleCount = calculateParticleCount();
+  if (newParticleCount !== particleCount) {
+    particleCount = newParticleCount;
+    initializeParticles();
+  }
 });
 
 function animate() {
