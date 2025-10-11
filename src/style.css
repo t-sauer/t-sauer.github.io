@@ -123,6 +123,10 @@ h1 {
 }
 
 @media only screen and (max-width: 667px) {
+  body::after {
+    display: none;
+  }
+
   .links {
     flex-wrap: wrap;
     width: calc(100% - 3rem);
