@@ -28,15 +28,25 @@ document.body.insertBefore(renderer.domElement, document.body.firstChild);
 
 camera.position.z = 35;
 
-const particleCount = 1200;
+// Calculate visible bounds based on camera FOV and aspect ratio
+const getVisibleBounds = () => {
+  const vFOV = (camera.fov * Math.PI) / 180;
+  const height = 2 * Math.tan(vFOV / 2) * camera.position.z;
+  const width = height * camera.aspect;
+  return { width: width / 2, height: height / 2 };
+};
+
+let bounds = getVisibleBounds();
+
+const particleCount = 1500;
 const particles = new BufferGeometry();
 const positions = new Float32Array(particleCount * 3);
 const velocities: number[] = [];
 
 // Initialize particles with random positions
 for (let i = 0; i < particleCount * 3; i += 3) {
-  positions[i] = (Math.random() - 0.5) * 100; // x
-  positions[i + 1] = (Math.random() - 0.5) * 100; // y
+  positions[i] = (Math.random() - 0.5) * bounds.width * 2; // x
+  positions[i + 1] = (Math.random() - 0.5) * bounds.height * 2; // y
   positions[i + 2] = (Math.random() - 0.5) * 100; // z
 
   velocities.push(
@@ -89,16 +99,20 @@ window.addEventListener("mousemove", (event) => {
   mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
+  const halfWidth = window.innerWidth / 2;
+  const z = (Math.abs(halfWidth - event.clientX) / halfWidth) * 20;
+
   targetRotation.x = mouse.y * 0.4;
   targetRotation.y = mouse.x * 0.4;
 
-  mouseWorld.set(mouse.x * 40, mouse.y * 40, 0);
+  mouseWorld.set(mouse.x * 40, mouse.y * 40, z);
 });
 
 window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  bounds = getVisibleBounds();
 });
 
 function animate() {
@@ -114,9 +128,9 @@ function animate() {
     positions[i + 1] += velocities[i + 1];
     positions[i + 2] += velocities[i + 2];
 
-    // Boundary checks - wrap around
-    if (Math.abs(positions[i]) > 50) velocities[i] *= -1;
-    if (Math.abs(positions[i + 1]) > 50) velocities[i + 1] *= -1;
+    // Boundary checks - wrap around with aspect-aware bounds
+    if (Math.abs(positions[i]) > bounds.width) velocities[i] *= -1;
+    if (Math.abs(positions[i + 1]) > bounds.height) velocities[i + 1] *= -1;
     if (Math.abs(positions[i + 2]) > 50) velocities[i + 2] *= -1;
   }
 
