@@ -139,18 +139,31 @@ window.addEventListener("resize", () => {
   }
 });
 
+// Time tracking for frame-rate independent animation
+let lastTime = performance.now();
+const targetFPS = 60;
+const targetFrameTime = 1000 / targetFPS; // ~16.67ms for 60 FPS
+
 function animate() {
   requestAnimationFrame(animate);
+
+  // Calculate delta time
+  const currentTime = performance.now();
+  const deltaTime = currentTime - lastTime;
+  lastTime = currentTime;
+
+  // Normalize delta time to target frame time (1.0 = 60 FPS)
+  const deltaMultiplier = deltaTime / targetFrameTime;
 
   const positions = particles.attributes.position.array as Float32Array;
   const linePositions: number[] = [];
   const visibleParticlePositions: number[] = [];
 
-  // Update particle positions
+  // Update particle positions with delta time
   for (let i = 0; i < particleCount * 3; i += 3) {
-    positions[i] += velocities[i];
-    positions[i + 1] += velocities[i + 1];
-    positions[i + 2] += velocities[i + 2];
+    positions[i] += velocities[i] * deltaMultiplier;
+    positions[i + 1] += velocities[i + 1] * deltaMultiplier;
+    positions[i + 2] += velocities[i + 2] * deltaMultiplier;
 
     // Boundary checks - wrap around with aspect-aware bounds
     if (Math.abs(positions[i]) > bounds.width) velocities[i] *= -1;
@@ -222,9 +235,12 @@ function animate() {
     new Float32BufferAttribute(linePositions, 3)
   );
 
-  // Smooth rotation based on mouse
-  currentRotation.x += (targetRotation.x - currentRotation.x) * 0.05;
-  currentRotation.y += (targetRotation.y - currentRotation.y) * 0.05;
+  // Smooth rotation based on mouse with delta time
+  const rotationLerpFactor = 0.05 * deltaMultiplier;
+  currentRotation.x +=
+    (targetRotation.x - currentRotation.x) * rotationLerpFactor;
+  currentRotation.y +=
+    (targetRotation.y - currentRotation.y) * rotationLerpFactor;
 
   particleSystem.rotation.x = currentRotation.x;
   particleSystem.rotation.y = currentRotation.y;
