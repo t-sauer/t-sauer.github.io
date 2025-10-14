@@ -102,7 +102,7 @@ let initialY = 0;
 
 if (headlineRect) {
   const centerX = headlineRect.left + headlineRect.width / 2;
-  const centerY = headlineRect.top + headlineRect.height / 2;
+  const centerY = headlineRect.top / 1.75 + headlineRect.height / 2;
   initialX = (centerX / window.innerWidth) * 2 - 1;
   initialY = -(centerY / window.innerHeight) * 2 + 1;
 }
@@ -112,20 +112,39 @@ const mouseWorld = new Vector3(initialX * 40, initialY * 40, 0);
 const targetRotation = { x: initialY * 0.4, y: initialX * 0.4 };
 const currentRotation = { x: initialY * 0.4, y: initialX * 0.4 };
 
-window.addEventListener("mousemove", (event) => {
-  mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-  mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+// Helper function to update position from pointer events (mouse or touch)
+const updatePointerPosition = (clientX: number, clientY: number) => {
+  mouse.x = (clientX / window.innerWidth) * 2 - 1;
+  mouse.y = -(clientY / window.innerHeight) * 2 + 1;
 
   const halfWidth = window.innerWidth / 2;
   const halfHeight = window.innerHeight / 2;
-  const distanceX = Math.abs(halfWidth - event.clientX) / halfWidth;
-  const distanceY = Math.abs(halfHeight - event.clientY) / halfHeight;
+  const distanceX = Math.abs(halfWidth - clientX) / halfWidth;
+  const distanceY = Math.abs(halfHeight - clientY) / halfHeight;
   const z = Math.sqrt(distanceX * distanceX + distanceY * distanceY) * 15;
 
   targetRotation.x = mouse.y * 0.4;
   targetRotation.y = mouse.x * 0.4;
 
   mouseWorld.set(mouse.x * 40, mouse.y * 40, z);
+};
+
+// Mouse events
+window.addEventListener("mousemove", (event) => {
+  updatePointerPosition(event.clientX, event.clientY);
+});
+
+// Touch events for mobile devices
+window.addEventListener("touchstart", (event) => {
+  if (event.touches.length > 0) {
+    updatePointerPosition(event.touches[0].clientX, event.touches[0].clientY);
+  }
+});
+
+window.addEventListener("touchmove", (event) => {
+  if (event.touches.length > 0) {
+    updatePointerPosition(event.touches[0].clientX, event.touches[0].clientY);
+  }
 });
 
 window.addEventListener("resize", () => {
