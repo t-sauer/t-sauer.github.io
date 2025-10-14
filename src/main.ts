@@ -117,7 +117,10 @@ window.addEventListener("mousemove", (event) => {
   mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 
   const halfWidth = window.innerWidth / 2;
-  const z = (Math.abs(halfWidth - event.clientX) / halfWidth) * 20;
+  const halfHeight = window.innerHeight / 2;
+  const distanceX = Math.abs(halfWidth - event.clientX) / halfWidth;
+  const distanceY = Math.abs(halfHeight - event.clientY) / halfHeight;
+  const z = Math.sqrt(distanceX * distanceX + distanceY * distanceY) * 15;
 
   targetRotation.x = mouse.y * 0.4;
   targetRotation.y = mouse.x * 0.4;
