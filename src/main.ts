@@ -45,7 +45,7 @@ const calculateParticleCount = () => {
   // Scale proportionally, with min of 300 and max of 2000
   const baseArea = 1920 * 1080;
   const scaledCount = Math.floor((screenArea / baseArea) * 2000);
-  return Math.max(300, Math.min(2000, scaledCount));
+  return Math.max(500, Math.min(2000, scaledCount));
 };
 
 let particleCount = calculateParticleCount();
