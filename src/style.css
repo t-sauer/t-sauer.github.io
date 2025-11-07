@@ -5,9 +5,14 @@ body {
   padding: 0;
   overscroll-behavior: none;
 
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
   --color-primary: #d9d9d9;
   --color-accent: #50fbc2;
   --color-background: #282525;
+
+  --transition-time: 200ms;
 }
 
 body {
@@ -86,16 +91,16 @@ h1 {
   height: 2rem;
   position: relative;
   outline: none;
-  transition: backdrop-filter var(--transition-time);
+  transition: backdrop-filter var(--transition-time), letter-spacing var(--transition-time);
 }
 
 .links a:hover,
 .links a:focus {
     backdrop-filter: blur(3px) brightness(200%);
+    letter-spacing: 0.4px;
 }
 
 .links a::before {
-  --transition-time: 200ms;
   pointer-events: none;
   display: block;
   content: "";
