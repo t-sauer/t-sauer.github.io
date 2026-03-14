@@ -78,21 +78,9 @@ body {
 html {
   background-color: var(--color-background);
   background-image:
-    radial-gradient(
-      circle at top left,
-      var(--bg-radial-1),
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 20% 80%,
-      var(--bg-radial-2),
-      transparent 55%
-    ),
-    linear-gradient(
-      180deg,
-      var(--bg-grad-top) 0%,
-      var(--bg-grad-bottom) 100%
-    );
+    radial-gradient(circle at top left, var(--bg-radial-1), transparent 45%),
+    radial-gradient(circle at 20% 80%, var(--bg-radial-2), transparent 55%),
+    linear-gradient(180deg, var(--bg-grad-top) 0%, var(--bg-grad-bottom) 100%);
   background-attachment: fixed;
 }
 
