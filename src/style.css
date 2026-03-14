@@ -7,11 +7,52 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  color-scheme: dark;
+
   --color-primary: #d9d9d9;
   --color-accent: #50fbc2;
   --color-background: #282525;
+  --color-surface: rgba(22, 22, 22, 0.6);
+  --color-surface-border: rgba(255, 255, 255, 0.06);
+  --color-surface-shadow: rgba(0, 0, 0, 0.35);
+  --color-divider: rgba(255, 255, 255, 0.06);
+  --color-accent-soft: rgba(80, 251, 194, 0.08);
+  --color-accent-mid: rgba(80, 251, 194, 0.16);
+  --color-accent-border: rgba(80, 251, 194, 0.25);
+  --color-accent-border-strong: rgba(80, 251, 194, 0.5);
+
+  --bg-radial-1: rgba(80, 251, 194, 0.12);
+  --bg-radial-2: rgba(217, 217, 217, 0.08);
+  --bg-grad-top: rgba(30, 30, 30, 0.9);
+  --bg-grad-bottom: rgba(22, 22, 22, 0.9);
+  --vignette: rgba(0, 0, 0, 0.2);
 
   --transition-time: 200ms;
+}
+
+@media (prefers-color-scheme: light) {
+  html,
+  body {
+    color-scheme: light;
+
+    --color-primary: #1b1b1b;
+    --color-accent: #c25a1d;
+    --color-background: #f5f2ee;
+    --color-surface: rgba(255, 255, 255, 0.75);
+    --color-surface-border: rgba(20, 20, 20, 0.08);
+    --color-surface-shadow: rgba(20, 20, 20, 0.15);
+    --color-divider: rgba(20, 20, 20, 0.14);
+    --color-accent-soft: rgba(194, 90, 29, 0.1);
+    --color-accent-mid: rgba(194, 90, 29, 0.18);
+    --color-accent-border: rgba(194, 90, 29, 0.35);
+    --color-accent-border-strong: rgba(194, 90, 29, 0.55);
+
+    --bg-radial-1: rgba(194, 90, 29, 0.12);
+    --bg-radial-2: rgba(0, 0, 0, 0.04);
+    --bg-grad-top: rgba(255, 255, 255, 0.9);
+    --bg-grad-bottom: rgba(245, 242, 238, 0.9);
+    --vignette: rgba(0, 0, 0, 0.08);
+  }
 }
 
 @font-face {
@@ -20,6 +61,12 @@ body {
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
 *,
@@ -33,18 +80,18 @@ html {
   background-image:
     radial-gradient(
       circle at top left,
-      rgba(80, 251, 194, 0.12),
+      var(--bg-radial-1),
       transparent 45%
     ),
     radial-gradient(
       circle at 20% 80%,
-      rgba(217, 217, 217, 0.08),
+      var(--bg-radial-2),
       transparent 55%
     ),
     linear-gradient(
       180deg,
-      rgba(30, 30, 30, 0.9) 0%,
-      rgba(22, 22, 22, 0.9) 100%
+      var(--bg-grad-top) 0%,
+      var(--bg-grad-bottom) 100%
     );
   background-attachment: fixed;
 }
@@ -71,7 +118,7 @@ body::after {
     ellipse at center,
     transparent 0%,
     transparent 50%,
-    rgba(0, 0, 0, 0.2) 100%
+    var(--vignette) 100%
   );
 }
 
@@ -83,11 +130,11 @@ body::after {
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
-  background: rgba(22, 22, 22, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
   border-radius: 20px;
   padding: clamp(2rem, 4vw, 3rem);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 60px var(--color-surface-shadow);
   backdrop-filter: blur(8px);
 }
 
@@ -133,7 +180,7 @@ p {
 }
 
 .details + .details {
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-top: 1px solid var(--color-divider);
   padding-top: 2rem;
 }
 
@@ -159,7 +206,7 @@ p {
   border-radius: 999px;
   font-size: 0.9rem;
   letter-spacing: 0.02em;
-  background: rgba(80, 251, 194, 0.08);
+  background: var(--color-accent-soft);
 }
 
 .note {
@@ -203,10 +250,10 @@ p {
   outline: none;
   background: linear-gradient(
     135deg,
-    rgba(80, 251, 194, 0.08),
+    var(--color-accent-soft),
     rgba(255, 255, 255, 0.02)
   );
-  border: 1px solid rgba(80, 251, 194, 0.25);
+  border: 1px solid var(--color-accent-border);
   border-radius: 12px;
   transition:
     transform var(--transition-time),
@@ -218,10 +265,10 @@ p {
 .links a:focus {
   background: linear-gradient(
     135deg,
-    rgba(80, 251, 194, 0.16),
+    var(--color-accent-mid),
     rgba(255, 255, 255, 0.06)
   );
-  border-color: rgba(80, 251, 194, 0.5);
+  border-color: var(--color-accent-border-strong);
   transform: translateY(-1px);
 }
 
