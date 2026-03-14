@@ -151,6 +151,7 @@ window.addEventListener("resize", () => {
   camera.aspect = window.innerWidth / window.innerHeight;
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   bounds = getVisibleBounds();
 
   // Recalculate particle count and reinitialize if it changed
@@ -175,7 +176,9 @@ function animate() {
   lastTime = currentTime;
 
   // Normalize delta time to target frame time (1.0 = 60 FPS)
-  const deltaMultiplier = deltaTime / targetFrameTime;
+  // Clamp to avoid huge jumps when tab regains focus.
+  const clampedDelta = Math.min(deltaTime, 50);
+  const deltaMultiplier = clampedDelta / targetFrameTime;
 
   const positions = particles.attributes.position.array as Float32Array;
   const linePositions: number[] = [];
@@ -188,9 +191,12 @@ function animate() {
     positions[i + 2] += velocities[i + 2] * deltaMultiplier;
 
     // Boundary checks - wrap around with aspect-aware bounds
-    if (Math.abs(positions[i]) > bounds.width) velocities[i] *= -1;
-    if (Math.abs(positions[i + 1]) > bounds.height) velocities[i + 1] *= -1;
-    if (Math.abs(positions[i + 2]) > 50) velocities[i + 2] *= -1;
+    if (positions[i] > bounds.width) positions[i] = -bounds.width;
+    if (positions[i] < -bounds.width) positions[i] = bounds.width;
+    if (positions[i + 1] > bounds.height) positions[i + 1] = -bounds.height;
+    if (positions[i + 1] < -bounds.height) positions[i + 1] = bounds.height;
+    if (positions[i + 2] > 50) positions[i + 2] = -50;
+    if (positions[i + 2] < -50) positions[i + 2] = 50;
   }
 
   // Create lines between nearby particles - only show lines near mouse
