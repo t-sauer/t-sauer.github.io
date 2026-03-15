@@ -274,14 +274,16 @@ p {
   flex-direction: column;
   gap: 0.9rem;
   padding: 1rem;
-  border: 1px solid color-mix(in srgb, var(--color-accent) 18%, var(--color-divider));
+  border: 1px solid
+    color-mix(in srgb, var(--color-accent) 18%, var(--color-divider));
   border-radius: 14px;
   background: linear-gradient(
     145deg,
     color-mix(in srgb, var(--color-accent) 8%, transparent),
     color-mix(in srgb, var(--color-surface) 85%, transparent)
   );
-  box-shadow: 0 10px 24px color-mix(in srgb, var(--color-surface-shadow) 70%, transparent);
+  box-shadow: 0 10px 24px
+    color-mix(in srgb, var(--color-surface-shadow) 70%, transparent);
 }
 
 .cv-employer-name {
@@ -332,7 +334,11 @@ p {
   width: 0.5rem;
   height: 0.5rem;
   border-radius: 999px;
-  background: color-mix(in srgb, var(--color-accent) 65%, var(--color-background));
+  background: color-mix(
+    in srgb,
+    var(--color-accent) 65%,
+    var(--color-background)
+  );
   box-shadow: 0 0 10px color-mix(in srgb, var(--color-accent) 50%, transparent);
 }
 
@@ -416,5 +422,77 @@ p {
 
   .links a {
     justify-content: center;
+  }
+}
+
+@media print {
+  @page {
+    margin: 12mm;
+  }
+
+  body::after {
+    display: none !important;
+  }
+
+  .page {
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    margin-block: 0 !important;
+    margin-inline: auto !important;
+    gap: 1.1rem !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .details + .details::before,
+  .cv-section h3::after,
+  .cv-roles li::before {
+    background: #999999 !important;
+    box-shadow: none !important;
+  }
+
+  .details + .details::before {
+    display: none !important;
+  }
+
+  .details + .details {
+    border-top: 0 !important;
+  }
+
+  .details {
+    gap: 0.4rem !important;
+  }
+
+  .details + .details {
+    padding-top: 0.75rem !important;
+  }
+
+  h1 {
+    margin-bottom: 0.25rem !important;
+  }
+
+  .lead {
+    margin-top: 0.35rem !important;
+  }
+
+  .cv-grid {
+    row-gap: 0.75rem !important;
+  }
+
+  .cv-employer {
+    padding-block: 0.6rem !important;
+  }
+
+  h2 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .details,
+  .cv-section,
+  .cv-employer {
+    break-inside: avoid;
+    page-break-inside: avoid;
   }
 }
