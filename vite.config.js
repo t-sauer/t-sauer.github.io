@@ -6,10 +6,12 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   build: {
-    rollupOptions: {
+    rolldownOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
         404: resolve(__dirname, "404.html"),
+        imprint: resolve(__dirname, "imprint.html"),
+        privacy: resolve(__dirname, "privacy.html"),
       },
     },
   },
