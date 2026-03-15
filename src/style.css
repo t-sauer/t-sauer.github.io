@@ -151,6 +151,13 @@ h1 {
   max-width: 48rem;
 }
 
+.lead-secondary {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 0.95em;
+  color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+}
+
 h2 {
   margin: 0 0 0.75rem;
   font-size: 1.15rem;
@@ -404,6 +411,38 @@ p {
   transform: translateY(-1px);
 }
 
+.site-footer {
+  margin-top: 0.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--color-divider);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.9rem;
+  color: color-mix(in srgb, var(--color-primary) 70%, transparent);
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition:
+    color var(--transition-time),
+    border-color var(--transition-time);
+}
+
+.footer-links a:hover,
+.footer-links a:focus {
+  color: var(--color-accent);
+  border-color: color-mix(in srgb, var(--color-accent) 70%, transparent);
+}
+
 @media only screen and (max-width: 667px) {
   body::after {
     display: none;
@@ -422,6 +461,11 @@ p {
 
   .links a {
     justify-content: center;
+  }
+
+  .site-footer {
+    flex-direction: column;
+    text-align: center;
   }
 }
 
