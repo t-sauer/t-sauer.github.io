@@ -93,6 +93,16 @@ body {
   min-height: 100%;
 }
 
+::selection {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
+::-moz-selection {
+  background: var(--color-accent);
+  color: var(--color-background);
+}
+
 body::after {
   content: "";
   position: fixed;
