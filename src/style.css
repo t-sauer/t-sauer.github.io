@@ -197,28 +197,6 @@ p {
   background: var(--color-accent-soft);
 }
 
-.note {
-  color: color-mix(in srgb, var(--color-primary) 65%, transparent);
-  font-size: 0.95rem;
-}
-
-.inline-link {
-  color: var(--color-primary);
-  text-decoration: none;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--color-accent) 60%, transparent);
-  padding-bottom: 0.1rem;
-  transition:
-    color var(--transition-time),
-    border-color var(--transition-time);
-}
-
-.inline-link:hover,
-.inline-link:focus {
-  color: var(--color-accent);
-  border-color: var(--color-accent);
-}
-
 .links svg {
   --icon-size: 1.5rem;
   width: var(--icon-size);
