@@ -15,19 +15,13 @@
 
 <body>
   <main class="page">
-    <header class="hero">
-      <p class="eyebrow">Legal</p>
-      <nav class="hero-nav" aria-label="Page">
-        <a class="back-link" href="/">← Back</a>
-      </nav>
-      <h1>Datenschutzerkl&auml;rung / Privacy Policy</h1>
-      <p class="lead">
-        Informationen zum Umgang mit personenbezogenen Daten auf dieser Website.
-        <span class="lead-secondary">
-          Information about how personal data is handled on this website.
-        </span>
-      </p>
-    </header>
+    {{> hero
+    eyebrow="Legal"
+    title="Datenschutzerklärung / Privacy Policy"
+    lead="Informationen zum Umgang mit personenbezogenen Daten auf dieser Website."
+    lead_secondary="Information about how personal data is handled on this website."
+    show_back=true
+    }}
 
     <section class="details" aria-label="Overview">
       <h2>Datenschutz&shy;erkl&auml;rung</h2>

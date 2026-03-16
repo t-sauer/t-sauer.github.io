@@ -15,19 +15,13 @@
 
 <body>
   <main class="page">
-    <header class="hero">
-      <p class="eyebrow">Legal</p>
-      <nav class="hero-nav" aria-label="Page">
-        <a class="back-link" href="/">← Back</a>
-      </nav>
-      <h1>Impressum / Imprint</h1>
-      <p class="lead">
-        Angaben gemäß § 5 TMG und Informationen zur inhaltlich verantwortlichen Person.
-        <span class="lead-secondary">
-          Information according to § 5 TMG and details about the content owner.
-        </span>
-      </p>
-    </header>
+    {{> hero
+    eyebrow="Legal"
+    title="Impressum / Imprint"
+    lead="Angaben gemäß § 5 TMG und Informationen zur inhaltlich verantwortlichen Person."
+    lead_secondary="Information according to § 5 TMG and details about the content owner."
+    show_back=true
+    }}
 
     <section class="details" aria-label="Imprint">
       <h2>Angaben / Details</h2>

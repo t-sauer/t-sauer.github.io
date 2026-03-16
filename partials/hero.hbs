@@ -1,0 +1,19 @@
+<header class="hero">
+  {{#if eyebrow}}
+    <p class="eyebrow">{{eyebrow}}</p>
+  {{/if}}
+  {{#if show_back}}
+    <nav class="hero-nav" aria-label="Page">
+      <a class="back-link" href="/">← Back</a>
+    </nav>
+  {{/if}}
+  <h1>{{title}}</h1>
+  <p class="lead">
+    {{lead}}
+    {{#if lead_secondary}}
+      <span class="lead-secondary">
+        {{lead_secondary}}
+      </span>
+    {{/if}}
+  </p>
+</header>
