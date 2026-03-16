@@ -6,10 +6,13 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
   },
   "devDependencies": {
     "@types/three": "^0.183.1",
+    "prettier": "^3.8.1",
     "typescript": "~5.9.3",
     "vite": "^8.0.0",
     "vite-plugin-handlebars": "^2.0.0"
